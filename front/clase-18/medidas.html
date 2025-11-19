@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>px vs rem</title>
+  <style>
+    html {
+      font-size: 16px; /* base inicial */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .caja {
+      margin: 10px 0;
+      padding: 10px;
+      border: 2px solid #333;
+    }
+
+    /* Caja con PX (fijo) */
+    .px {
+      font-size: 16px;   /* fijo */
+      width: 200px;      /* fijo */
+      background: #f9c;
+    }
+
+    /* Caja con REM (relativo al html) */
+    .rem {
+      font-size: 1rem;   /* relativo */
+      width: 12.5rem;    /* 12.5 × 16px = 200px inicial */
+      background: #9cf;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Comparación PX vs REM</h2>
+
+  <div class="caja px">Caja en PX (16px texto, 200px ancho)</div>
+  <div class="caja rem">Caja en REM (1rem texto, 12.5rem ancho)</div>
+
+  <button onclick="agrandar()">🔎 Aumentar tamaño base</button>
+  <button onclick="reducir()">🔍 Reducir tamaño base</button>
+
+  <script>
+    function agrandar() {
+      document.documentElement.style.fontSize = "20px"; // sube el root
+    }
+
+    function reducir() {
+      document.documentElement.style.fontSize = "12px"; // baja el root
+    }
+  </script>
+</body>
+</html>

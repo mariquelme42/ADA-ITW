@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡Reservá tu Butaca!</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .butaca {
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: white;
+    }
+    .ocupado {
+      background-color: #e0e0e0;
+      color: #555;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¡Reservá tu Butaca!</h1>
+  <p>Elegí una butaca disponible:</p>
+
+  <div class="grid" id="sala"></div>
+
+  <script>
+    const sala = [
+      ["libre", "ocupado", "ocupado"],
+      ["libre", "ocupado", "ocupado"],
+      ["ocupado", "libre", "libre"]
+    ];
+
+    const contenedor = document.getElementById("sala");
+
+    function renderizarSala() {
+      contenedor.innerHTML = "";
+      for (let fila = 0; fila < sala.length; fila++) {
+        for (let col = 0; col < sala[fila].length; col++) {
+          const estado = sala[fila][col];
+          const btn = document.createElement("button");
+          btn.textContent = estado;
+          btn.className = "butaca" + (estado === "ocupado" ? " ocupado" : "");
+          btn.disabled = estado === "ocupado";
+
+          // Reservar al hacer click
+          btn.onclick = () => {
+            sala[fila][col] = "ocupado";
+            alert("✅ ¡Reserva exitosa!");
+            renderizarSala();
+          };
+
+          contenedor.appendChild(btn);
+        }
+      }
+    }
+
+    renderizarSala();
+  </script>
+
+</body>
+</html>
